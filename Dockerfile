@@ -42,6 +42,6 @@ COPY --from=fastify-build /app/nest-fastify/dist /app/nest-fastify/dist
 COPY nest-fastify/package*.json /app/nest-fastify/
 
 COPY run-benchmark.sh /app/
-RUN chmod +x /app/run-benchmark.sh
+RUN chmod +x run-benchmark.sh
 
-CMD ["/app/run-benchmark.sh"]
+CMD ["/bin/sh", "/app/run-benchmark.sh"]
