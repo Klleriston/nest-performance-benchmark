@@ -22,12 +22,7 @@ This project benchmarks the performance of different configurations for a NestJS
     cd nest-performance-benchmark
     ```
 
-2. Install dependencies:
+2. To build and run benchmark:
     ```bash
-    npm install
-    ```
-
-3. To run the benchmark, use the following command:
-    ```bash
-    bash run-benchmark.sh
+    docker compose up --build
     ```
