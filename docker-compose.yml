@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  express:
+    build:
+      context: ./nest-default
+    ports:
+      - "3000:3000"
+    networks:
+      - benchmark-network
+
+  fastify:
+    build:
+      context: ./nest-fastify
+    ports:
+      - "3001:3001"
+    networks:
+      - benchmark-network
+
+  load-test:
+    build:
+      context: ./load-test
+    depends_on:
+      - express
+      - fastify
+    networks:
+      - benchmark-network
+
+networks:
+  benchmark-network:
