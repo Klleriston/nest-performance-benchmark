@@ -1,13 +1,13 @@
 const autocannon = require('autocannon');
 
 const servers = [
-    { name: 'Express', url: 'http://localhost:3000' },
-    { name: 'Fastify', url: 'http://localhost:3001' }
+    { name: 'Express', url: 'http://express:3000' },
+    { name: 'Fastify', url: 'http://fastify:3001' }
 ];
 
 const processPayload = JSON.stringify({
     name: 'Test',
-    templateValues: Array.from({ length: 1000 }, () => Math.floor(Math.random() * 1000))
+    templateValues: Array.from({ length: 30 }, () => Math.floor(Math.random() * 1000))
 });
 
 async function runBenchmark(server, route, method, payload = null) {
@@ -18,8 +18,9 @@ async function runBenchmark(server, route, method, payload = null) {
         method: method,
         body: payload,
         headers: { 'Content-Type': 'application/json' },
-        connections: method === 'GET' ? 500 : 100,
-        duration: 10
+        connections: method === 'GET' ? 50 : 10,
+        duration: 10,
+        timeout: 30,
     });
 
     console.log(`\n Results (${server.name} - ${route}):\n`);
